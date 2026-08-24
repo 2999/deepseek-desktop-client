@@ -1,0 +1,36 @@
+{
+  "name": "deepseek-desktop-client",
+  "version": "1.0.0",
+  "description": "DeepSeek macOS desktop client (local web wrapper)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --mac dir"
+  },
+  "keywords": [
+    "deepseek",
+    "electron",
+    "mac"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "build": {
+    "appId": "com.deepseek.desktop",
+    "productName": "DeepSeek",
+    "files": [
+      "main.js",
+      "preload.js",
+      "assets/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "assets/icon.icns",
+      "target": "dir"
+    }
+  },
+  "devDependencies": {
+    "electron": "^43.4.1",
+    "electron-builder": "^26.15.3"
+  }
+}
