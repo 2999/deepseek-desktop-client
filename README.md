@@ -39,13 +39,18 @@ bash build.sh
 1. 清理旧构建产物
 2. 使用 `electron-builder` 打包 `.app`（`npm run build` 等价于 `electron-builder --mac dir`）
 3. ad-hoc 签名并校验
-4. 复制到 `/Applications/DeepSeek.app`
+4. 生成 zip 分发包 `dist/DeepSeek-mac-arm64.zip`
+5. 复制到 `/Applications/DeepSeek.app`
 
 构建完成后启动：
 
 ```bash
 open -a DeepSeek
 ```
+
+### 分发安装
+
+`dist/DeepSeek-mac-arm64.zip` 可直接分享给他人：下载后解压，将 `DeepSeek.app` 拖入 `/Applications` 即可使用，无需安装 Node 环境。
 
 ## 项目结构
 
