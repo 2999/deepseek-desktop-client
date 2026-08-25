@@ -50,11 +50,7 @@ open -a DeepSeek
 
 ### 分发安装
 
-直接从 [GitHub Releases](https://github.com/2999/deepseek-desktop-client/releases/latest) 下载最新版 `DeepSeek-mac-arm64-v1.0.0.zip`，解压后将 `DeepSeek.app` 拖入 `/Applications` 即可使用，无需安装 Node 环境。
-
-当前最新版：**v1.0.0**
-
-- 下载地址：<https://github.com/2999/deepseek-desktop-client/releases/download/v1.0.0/DeepSeek-mac-arm64-v1.0.0.zip>
+直接从 [GitHub Releases](https://github.com/2999/deepseek-desktop-client/releases/latest) 下载最新版，解压后将 `DeepSeek.app` 拖入 `/Applications` 即可使用，无需安装 Node 环境。
 
 > 若提示「无法打开，因为无法验证开发者」，在「系统设置 → 隐私与安全性」中点击「仍要打开」即可（应用为 ad-hoc 签名）。
 
