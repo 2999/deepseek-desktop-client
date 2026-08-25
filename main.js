@@ -1,5 +1,5 @@
 // DeepSeek macOS desktop client - main process
-const { app, BrowserWindow, Tray, Menu, nativeImage, session } = require('electron');
+const { app, BrowserWindow, Tray, Menu, nativeImage, session, shell } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
@@ -83,10 +83,22 @@ function createWindow() {
 
   mainWindow.loadURL(HOME_URL);
 
-  // Let login popups (Google OAuth / WeChat) open as real child windows
-  // so window.opener / postMessage between popup and parent keep working.
+  // Open external links in the system default browser; keep same-origin
+  // popups (login OAuth) as real child windows so window.opener works.
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    if (!isSameOrigin(url)) {
+      shell.openExternal(url);
+      return { action: 'deny' };
+    }
     return { action: 'allow' };
+  });
+
+  // Prevent the main window from navigating away to external sites.
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    if (!isSameOrigin(url)) {
+      event.preventDefault();
+      shell.openExternal(url);
+    }
   });
 
   mainWindow.once('ready-to-show', () => {
@@ -104,6 +116,16 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+}
+
+function isSameOrigin(url) {
+  try {
+    const target = new URL(url);
+    const home = new URL(HOME_URL);
+    return target.origin === home.origin;
+  } catch {
+    return false;
+  }
 }
 
 // Try to focus the visible input (chat textarea / login input) inside the page.
