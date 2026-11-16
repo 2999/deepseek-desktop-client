@@ -169,8 +169,11 @@ function focusInput() {
 }
 
 function createTray() {
-  const iconPath = path.join(__dirname, 'assets', 'icon.icns');
-  const trayIcon = nativeImage.createFromPath(iconPath).resize({ width: 16, height: 16 });
+  // Menu-bar template icon: a transparent-background monochrome whale PNG
+  // (with @2x for Retina). macOS tints template images automatically —
+  // black on light menu bars, white on dark ones — matching other icons.
+  const iconPath = path.join(__dirname, 'assets', 'tray.png');
+  const trayIcon = nativeImage.createFromPath(iconPath);
   trayIcon.setTemplateImage(true);
 
   tray = new Tray(trayIcon);
